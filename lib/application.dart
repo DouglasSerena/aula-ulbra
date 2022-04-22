@@ -29,7 +29,7 @@ class ApplicationState extends State<Application> {
   Widget _build(BuildContext context, ThemeData state) {
     return MaterialApp(
       theme: state,
-      title: 'Aplication',
+      title: 'Application',
       debugShowCheckedModeBanner: false,
       home: const HomeScreen(),
     );
