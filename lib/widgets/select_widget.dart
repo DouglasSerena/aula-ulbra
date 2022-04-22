@@ -1,11 +1,5 @@
+import 'package:ap1/domain/select_item.dart';
 import 'package:flutter/material.dart';
-
-class SelectItem {
-  String value;
-  String label;
-
-  SelectItem({required this.value, required this.label});
-}
 
 class SelectWidget extends StatefulWidget {
   List<SelectItem> items;

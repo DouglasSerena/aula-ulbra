@@ -1,5 +1,8 @@
+import 'package:ap1/domain/classroom_item.dart';
+import 'package:ap1/domain/select_item.dart';
 import 'package:ap1/layout/app_bar_common_layout.dart';
 import 'package:ap1/layout/drawer_common_layout.dart';
+import 'package:ap1/widgets/classroom_card_widget.dart';
 import 'package:ap1/widgets/select_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -11,6 +14,10 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  List<ClassroomItem> classroomItens = [];
+
+  _HomeScreenState();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,6 +54,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   SelectItem(value: "5", label: "2020/1"),
                 ],
               ),
+              const SizedBox(height: 10),
+              ClassroomCardWidget(onPressed: () => print("OK"))
             ],
           ),
         ),

@@ -14,7 +14,7 @@ dependencies:
     flutter_bloc: ^8.0.1
     injectable: ^1.5.3
     percent_indicator: ^3.4.0
-
+    badges: ^2.0.2
 
 dev_dependencies:
     flutter_test:
