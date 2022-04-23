@@ -4,7 +4,7 @@ class AppBarCommonLayout extends AppBar {
   AppBarCommonLayout({Key? key})
       : super(
           key: key,
-          titleSpacing: 0.0,
+          titleSpacing: 0.10,
           backgroundColor: Colors.white,
           leading: Builder(
             builder: (context) => IconButton(
