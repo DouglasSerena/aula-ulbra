@@ -34,8 +34,9 @@ class _SelectWidgetState extends State<SelectWidget> {
       child: DropdownButtonFormField<String>(
         iconSize: 42,
         value: selected,
-        icon: const Icon(Icons.arrow_drop_down),
+        isExpanded: true,
         onChanged: onChanged,
+        icon: const Icon(Icons.arrow_drop_down),
         decoration: InputDecoration(
           contentPadding:
               const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
@@ -48,7 +49,10 @@ class _SelectWidgetState extends State<SelectWidget> {
         items: items.map<DropdownMenuItem<String>>((SelectItem item) {
           return DropdownMenuItem<String>(
             value: item.value,
-            child: Text(item.label),
+            child: Text(
+              item.label,
+              overflow: TextOverflow.ellipsis,
+            ),
           );
         }).toList(),
       ),

@@ -1,21 +1,31 @@
+import 'package:ap1/domain/classroom_item.dart';
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
 class ClassroomCardWidget extends StatefulWidget {
   void Function()? onPressed;
+  ClassroomItem classroom;
 
-  ClassroomCardWidget({Key? key, required this.onPressed}) : super(key: key);
+  ClassroomCardWidget({
+    Key? key,
+    required this.onPressed,
+    required this.classroom,
+  }) : super(key: key);
 
   @override
   State<ClassroomCardWidget> createState() =>
-      _ClassroomCardWidgetState(onPressed: onPressed);
+      _ClassroomCardWidgetState(onPressed: onPressed, classroom: classroom);
 }
 
 class _ClassroomCardWidgetState extends State<ClassroomCardWidget> {
   void Function()? onPressed;
+  ClassroomItem classroom;
 
-  _ClassroomCardWidgetState({required this.onPressed});
+  _ClassroomCardWidgetState({
+    required this.onPressed,
+    required this.classroom,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -24,9 +34,9 @@ class _ClassroomCardWidgetState extends State<ClassroomCardWidget> {
         children: [
           Container(
             padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
-            decoration: const BoxDecoration(
-              color: Colors.blue,
-              borderRadius: BorderRadius.only(
+            decoration: BoxDecoration(
+              color: classroom.color,
+              borderRadius: const BorderRadius.only(
                 topLeft: Radius.circular(4),
                 topRight: Radius.circular(4),
               ),
@@ -34,31 +44,37 @@ class _ClassroomCardWidgetState extends State<ClassroomCardWidget> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
-                    Text(
-                      "Banco de Dados",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18,
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        classroom.title,
+                        overflow: TextOverflow.ellipsis,
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18,
+                        ),
                       ),
-                    ),
-                    SizedBox(height: 5),
-                    Text(
-                      "Turma: 0067-A - 41N - Graduação",
-                      style: TextStyle(color: Colors.white),
-                    )
-                  ],
+                      const SizedBox(height: 5),
+                      Text(
+                        "Turma: ${classroom.classroom}",
+                        overflow: TextOverflow.ellipsis,
+                        style: const TextStyle(color: Colors.white),
+                      )
+                    ],
+                  ),
                 ),
                 CircularPercentIndicator(
                   radius: 60.0,
                   lineWidth: 3.0,
-                  percent: 0.5,
-                  center:
-                      const Text("50%", style: TextStyle(color: Colors.white)),
+                  percent: classroom.completed,
                   progressColor: Colors.amber,
+                  center: Text(
+                    "${classroom.completed * 100}%",
+                    style: const TextStyle(color: Colors.white),
+                  ),
                 )
               ],
             ),
@@ -68,21 +84,30 @@ class _ClassroomCardWidgetState extends State<ClassroomCardWidget> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Badge(
-                showBadge: true,
-                badgeContent: const Text('3'),
-                child: const Icon(Icons.star, color: Colors.black),
+                showBadge: classroom.quests > 0,
+                badgeContent: Text("${classroom.quests}"),
+                child: Icon(
+                  Icons.star,
+                  color: classroom.quests > 0 ? Colors.black : Colors.grey,
+                ),
               ),
               const SizedBox(width: 30),
               Badge(
-                showBadge: false,
-                badgeContent: const Text('3'),
-                child: const Icon(Icons.insert_comment, color: Colors.grey),
+                showBadge: classroom.commits > 0,
+                badgeContent: Text("${classroom.commits}"),
+                child: Icon(
+                  Icons.insert_comment,
+                  color: classroom.commits > 0 ? Colors.black : Colors.grey,
+                ),
               ),
               const SizedBox(width: 30),
               Badge(
-                showBadge: false,
-                badgeContent: const Text('3'),
-                child: const Icon(Icons.info, color: Colors.grey),
+                showBadge: classroom.alerts > 0,
+                badgeContent: Text("${classroom.alerts}"),
+                child: Icon(
+                  Icons.info,
+                  color: classroom.alerts > 0 ? Colors.black : Colors.grey,
+                ),
               )
             ],
           ),
@@ -92,6 +117,9 @@ class _ClassroomCardWidgetState extends State<ClassroomCardWidget> {
             padding: const EdgeInsets.symmetric(horizontal: 6),
             child: ElevatedButton(
               onPressed: onPressed,
+              style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all(Colors.green),
+              ),
               child: const Text("Entrar na sala"),
             ),
           ),
