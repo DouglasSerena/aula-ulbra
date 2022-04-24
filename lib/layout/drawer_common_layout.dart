@@ -52,7 +52,6 @@ class DrawerCommonLayout extends Drawer {
                   title: const Text('Home'),
                   onTap: () {},
                 ),
-                const Divider(color: Colors.black),
                 ListTile(
                   leading: const Icon(Icons.favorite),
                   title: const Text('Home'),
