@@ -28,7 +28,7 @@ class AppBarCommonLayout extends AppBar {
           ),
           title: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
+            children: <Widget>[
               Image.asset(
                 "assets/images/aula-logo.png",
                 fit: BoxFit.contain,

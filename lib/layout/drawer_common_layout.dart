@@ -12,7 +12,8 @@ class DrawerCommonLayout extends Drawer {
                   accountEmail: Text('email@email.com'),
                   currentAccountPicture: CircleAvatar(
                     backgroundImage: NetworkImage(
-                        'https://cdn.pixabay.com/photo/2018/04/18/18/56/user-3331256_960_720.png'),
+                      'https://cdn.pixabay.com/photo/2018/04/18/18/56/user-3331256_960_720.png',
+                    ),
                   ),
                 ),
                 Builder(
@@ -20,39 +21,46 @@ class DrawerCommonLayout extends Drawer {
                     height: MediaQuery.of(context).padding.top,
                   ),
                 ),
-                ListTile(
-                    leading: const Icon(Icons.computer_outlined),
-                    title: const Text('Home'),
-                    onTap: () {
-                      print('você foi para outra pagina ');
-                    }),
-                ListTile(
-                  leading: const Icon(Icons.note_add_outlined),
-                  title: const Text('Home'),
-                  onTap: () {},
-                ),
-                ListTile(
-                  leading: const Icon(Icons.library_books_outlined),
-                  title: const Text('Home'),
-                  onTap: () {},
-                ),
-                ListTile(
-                  leading: const Icon(Icons.favorite),
-                  title: const Text('Home'),
-                  onTap: () {},
-                ),
                 const Divider(
                   color: Colors.white38,
                 ),
                 ListTile(
-                  leading: const Icon(Icons.favorite),
-                  title: const Text('Home'),
+                    leading: const Icon(Icons.computer_outlined),
+                    title: const Text('Salas virtuais'),
+                    onTap: () {}),
+                ListTile(
+                  leading: const Icon(Icons.note_add_outlined),
+                  title: const Text('Anotações de aula'),
                   onTap: () {},
                 ),
-                const Divider(color: Colors.black),
+                ListTile(
+                  leading: const Icon(Icons.library_books_outlined),
+                  title: const Text('Avalição institucional'),
+                  onTap: () {},
+                ),
                 ListTile(
                   leading: const Icon(Icons.favorite),
-                  title: const Text('Home'),
+                  title: const Text('Avisos'),
+                  onTap: () {},
+                ),
+                ListTile(
+                  leading: const Icon(Icons.favorite),
+                  title: const Text('Desempenho'),
+                  onTap: () {},
+                ),
+                ListTile(
+                  leading: const Icon(Icons.favorite),
+                  title: const Text('Frequência'),
+                  onTap: () {},
+                ),
+                ListTile(
+                  leading: const Icon(Icons.favorite),
+                  title: const Text('Materiais de apoio'),
+                  onTap: () {},
+                ),
+                ListTile(
+                  leading: const Icon(Icons.exit_to_app),
+                  title: const Text('Sair'),
                   onTap: () {},
                 ),
               ],
