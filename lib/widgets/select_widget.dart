@@ -1,26 +1,40 @@
-import 'package:ap1/domain/select_item.dart';
+import 'package:ap1/domain/classes/select_item.dart';
 import 'package:flutter/material.dart';
 
 class SelectWidget extends StatefulWidget {
+  String selected;
   List<SelectItem> items;
-  dynamic selected;
+  void Function(String) onChange;
 
-  SelectWidget({Key? key, required this.items, required this.selected})
-      : super(key: key);
+  SelectWidget({
+    Key? key,
+    required this.items,
+    required this.onChange,
+    required this.selected,
+  }) : super(key: key);
 
   @override
-  State<SelectWidget> createState() =>
-      _SelectWidgetState(selected: selected, items: items);
+  State<SelectWidget> createState() => _SelectWidgetState(
+        items: items,
+        selected: selected,
+        onChange: onChange,
+      );
 }
 
 class _SelectWidgetState extends State<SelectWidget> {
   List<SelectItem> items;
-  dynamic selected;
+  String selected;
+  void Function(String) onChange;
 
-  _SelectWidgetState({required this.items, required this.selected}) : super();
+  _SelectWidgetState({
+    required this.items,
+    required this.onChange,
+    required this.selected,
+  }) : super();
 
-  onChanged(String? value) {
+  handleChanged(String? value) {
     setState(() => selected = value ?? "");
+    onChange(value!);
   }
 
   @override
@@ -35,7 +49,7 @@ class _SelectWidgetState extends State<SelectWidget> {
         iconSize: 42,
         value: selected,
         isExpanded: true,
-        onChanged: onChanged,
+        onChanged: handleChanged,
         icon: const Icon(Icons.arrow_drop_down),
         decoration: InputDecoration(
           contentPadding:

@@ -1,30 +1,32 @@
-import 'package:ap1/domain/classroom_item.dart';
+import 'package:ap1/cubit/classroom/model/classroom_item_model.dart';
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
 class ClassroomCardWidget extends StatefulWidget {
   void Function()? onPressed;
-  ClassroomItem classroom;
+  ClassroomItemModel classroomItem;
 
   ClassroomCardWidget({
     Key? key,
     required this.onPressed,
-    required this.classroom,
+    required this.classroomItem,
   }) : super(key: key);
 
   @override
-  State<ClassroomCardWidget> createState() =>
-      _ClassroomCardWidgetState(onPressed: onPressed, classroom: classroom);
+  State<ClassroomCardWidget> createState() => _ClassroomCardWidgetState(
+        onPressed: onPressed,
+        classroomItem: classroomItem,
+      );
 }
 
 class _ClassroomCardWidgetState extends State<ClassroomCardWidget> {
   void Function()? onPressed;
-  ClassroomItem classroom;
+  ClassroomItemModel classroomItem;
 
   _ClassroomCardWidgetState({
     required this.onPressed,
-    required this.classroom,
+    required this.classroomItem,
   });
 
   @override
@@ -35,7 +37,7 @@ class _ClassroomCardWidgetState extends State<ClassroomCardWidget> {
           Container(
             padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
             decoration: BoxDecoration(
-              color: classroom.color,
+              color: classroomItem.color,
               borderRadius: const BorderRadius.only(
                 topLeft: Radius.circular(4),
                 topRight: Radius.circular(4),
@@ -49,7 +51,7 @@ class _ClassroomCardWidgetState extends State<ClassroomCardWidget> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        classroom.title,
+                        classroomItem.title,
                         overflow: TextOverflow.ellipsis,
                         style: const TextStyle(
                           color: Colors.white,
@@ -59,7 +61,7 @@ class _ClassroomCardWidgetState extends State<ClassroomCardWidget> {
                       ),
                       const SizedBox(height: 5),
                       Text(
-                        "Turma: ${classroom.classroom}",
+                        "Turma: ${classroomItem.classroom}",
                         overflow: TextOverflow.ellipsis,
                         style: const TextStyle(color: Colors.white),
                       )
@@ -69,10 +71,10 @@ class _ClassroomCardWidgetState extends State<ClassroomCardWidget> {
                 CircularPercentIndicator(
                   radius: 60.0,
                   lineWidth: 3.0,
-                  percent: classroom.completed,
+                  percent: classroomItem.completed,
                   progressColor: Colors.amber,
                   center: Text(
-                    "${classroom.completed * 100}%",
+                    "${classroomItem.completed * 100}%",
                     style: const TextStyle(color: Colors.white),
                   ),
                 )
@@ -84,29 +86,29 @@ class _ClassroomCardWidgetState extends State<ClassroomCardWidget> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Badge(
-                showBadge: classroom.quests > 0,
-                badgeContent: Text("${classroom.quests}"),
+                showBadge: classroomItem.quests > 0,
+                badgeContent: Text("${classroomItem.quests}"),
                 child: Icon(
                   Icons.star,
-                  color: classroom.quests > 0 ? Colors.black : Colors.grey,
+                  color: classroomItem.quests > 0 ? Colors.black : Colors.grey,
                 ),
               ),
               const SizedBox(width: 30),
               Badge(
-                showBadge: classroom.commits > 0,
-                badgeContent: Text("${classroom.commits}"),
+                showBadge: classroomItem.commits > 0,
+                badgeContent: Text("${classroomItem.commits}"),
                 child: Icon(
                   Icons.insert_comment,
-                  color: classroom.commits > 0 ? Colors.black : Colors.grey,
+                  color: classroomItem.commits > 0 ? Colors.black : Colors.grey,
                 ),
               ),
               const SizedBox(width: 30),
               Badge(
-                showBadge: classroom.alerts > 0,
-                badgeContent: Text("${classroom.alerts}"),
+                showBadge: classroomItem.alerts > 0,
+                badgeContent: Text("${classroomItem.alerts}"),
                 child: Icon(
                   Icons.info,
-                  color: classroom.alerts > 0 ? Colors.black : Colors.grey,
+                  color: classroomItem.alerts > 0 ? Colors.black : Colors.grey,
                 ),
               )
             ],

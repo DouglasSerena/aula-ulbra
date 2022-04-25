@@ -1,12 +1,12 @@
-import 'package:ap1/domain/classroom_item.dart';
+import 'package:ap1/cubit/classroom/model/classroom_item_model.dart';
 import 'package:flutter/material.dart';
 
 class ClassroomCardBlockScreen extends StatelessWidget {
-  ClassroomItem classroom;
+  ClassroomItemModel classroomItem;
 
   ClassroomCardBlockScreen({
     Key? key,
-    required this.classroom,
+    required this.classroomItem,
   }) : super(key: key);
 
   @override
@@ -18,7 +18,7 @@ class ClassroomCardBlockScreen extends StatelessWidget {
             width: double.infinity,
             padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
             decoration: BoxDecoration(
-              color: classroom.color,
+              color: classroomItem.color,
               borderRadius: const BorderRadius.only(
                 topLeft: Radius.circular(4),
                 topRight: Radius.circular(4),
@@ -29,7 +29,7 @@ class ClassroomCardBlockScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    classroom.title,
+                    classroomItem.title,
                     overflow: TextOverflow.ellipsis,
                     style: const TextStyle(
                       fontSize: 18,
@@ -46,7 +46,7 @@ class ClassroomCardBlockScreen extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    classroom.teacher,
+                    classroomItem.teacher,
                     overflow: TextOverflow.ellipsis,
                     style: const TextStyle(
                       color: Colors.white,

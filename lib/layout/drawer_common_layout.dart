@@ -1,6 +1,3 @@
-import 'dart:js';
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 
 class DrawerCommonLayout extends Drawer {
@@ -10,7 +7,7 @@ class DrawerCommonLayout extends Drawer {
           child: Container(
             child: Column(
               children: <Widget>[
-                UserAccountsDrawerHeader(
+                const UserAccountsDrawerHeader(
                   accountName: Text('Usuario'),
                   accountEmail: Text('email@email.com'),
                   currentAccountPicture: CircleAvatar(

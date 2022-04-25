@@ -1,11 +1,13 @@
-import 'package:ap1/domain/classroom_item.dart';
-import 'package:ap1/domain/select_item.dart';
+import 'package:ap1/cubit/classroom/classroom_cubit.dart';
+import 'package:ap1/cubit/classroom/model/classroom_item_model.dart';
+import 'package:ap1/domain/classes/select_item.dart';
 import 'package:ap1/layout/app_bar_common_layout.dart';
 import 'package:ap1/layout/drawer_common_layout.dart';
 import 'package:ap1/modules/classroom/classroom_module.dart';
 import 'package:ap1/widgets/classroom_card_widget.dart';
 import 'package:ap1/widgets/select_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -15,45 +17,20 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  List<ClassroomItem> classroomItens = [
-    ClassroomItem(
-      quests: 2,
-      completed: 0.8,
-      title: "Banco de Dados",
-      color: Colors.blueAccent,
-      teacher: "Cassio Huggentobler de Costa",
-      classroom: "0067-A - 41N - Graduação",
-    ),
-    ClassroomItem(
-      completed: 0.53,
-      color: Colors.brown,
-      teacher: "Vinicius Silveira Magnus",
-      title: "Plataformas Computacionais",
-      classroom: "0087-A - 21N/22N - Graduação",
-    ),
-    ClassroomItem(
-      alerts: 2,
-      completed: 0.2,
-      color: Colors.green,
-      teacher: "Ramon dos Santos Lummertz",
-      classroom: "0067-A - 41N - Graduação",
-      title: "Desenvolvimento de Sistemas Móveis",
-    ),
-    ClassroomItem(
-      alerts: 4,
-      quests: 1,
-      completed: 0.5,
-      color: Colors.red,
-      teacher: "Maria Adelina Raupp Sganzerla",
-      title: "Interface Humano-Computador",
-      classroom: "80306 - EAD - 71M72M - SEMESTRE - Graduação",
-    ),
-  ];
-
   _HomeScreenState();
 
   @override
   Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (_) => ClassroomCubit(),
+      child: BlocBuilder<ClassroomCubit, List<ClassroomItemModel>>(
+        builder: _build,
+      ),
+    );
+  }
+
+  @override
+  Widget _build(BuildContext context, List<ClassroomItemModel> classroomItens) {
     return Scaffold(
       appBar: AppBarCommonLayout(),
       drawer: DrawerCommonLayout(),
@@ -80,6 +57,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               SelectWidget(
                 selected: "1",
+                onChange: (String id) => print("OK"),
                 items: [
                   SelectItem(value: "1", label: "2022/1"),
                   SelectItem(value: "2", label: "2021/2"),
@@ -101,10 +79,12 @@ class _HomeScreenState extends State<HomeScreen> {
                       onPressed: () => Navigator.push(
                         context,
                         MaterialPageRoute(builder: (context) {
-                          return const ClassroomScreen();
+                          return ClassroomScreen(
+                            classroomItem: classroomItens[index],
+                          );
                         }),
                       ),
-                      classroom: classroomItens[index],
+                      classroomItem: classroomItens[index],
                     );
                   },
                 ),
