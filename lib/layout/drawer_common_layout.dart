@@ -28,7 +28,9 @@ class DrawerCommonLayout extends Drawer {
                 ListTile(
                     leading: const Icon(Icons.computer_outlined),
                     title: const Text('Salas virtuais'),
-                    onTap: () {}),
+                    onTap: () {
+                      // navigator.push()
+                    }),
                 ListTile(
                   leading: const Icon(Icons.note_add_outlined),
                   title: const Text('Anotações de aula'),
@@ -40,7 +42,7 @@ class DrawerCommonLayout extends Drawer {
                   onTap: () {},
                 ),
                 ListTile(
-                  leading: const Icon(Icons.favorite),
+                  leading: const Icon(Icons.warning),
                   title: const Text('Avisos'),
                   onTap: () {},
                 ),
@@ -50,7 +52,7 @@ class DrawerCommonLayout extends Drawer {
                   onTap: () {},
                 ),
                 ListTile(
-                  leading: const Icon(Icons.favorite),
+                  leading: const Icon(Icons.wallet_giftcard),
                   title: const Text('Frequência'),
                   onTap: () {},
                 ),
