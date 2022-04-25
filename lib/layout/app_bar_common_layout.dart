@@ -29,6 +29,12 @@ class AppBarCommonLayout extends AppBar {
           title: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
+              ListTile(
+                  leading: const Icon(Icons.computer_outlined),
+                  title: const Text('Salas virtuais'),
+                  onTap: () {
+                    // navigator.push()
+                  }),
               Image.asset(
                 "assets/images/aula-logo.png",
                 fit: BoxFit.contain,
